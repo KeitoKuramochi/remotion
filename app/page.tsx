@@ -358,24 +358,16 @@ export default function MyAnimation() {
           />
 
           <div
-            className="relative rounded-xl overflow-hidden mb-6 flex items-center justify-center"
-            style={{
-              aspectRatio: "16/9",
-              background: "#050F20",
-              border: `1px solid ${PINK}44`,
-            }}
+            className="rounded-xl overflow-hidden mb-6"
+            style={{ border: `1px solid ${PINK}44` }}
           >
-            <div className="text-center p-8">
-              <div className="text-5xl mb-4">🎬</div>
-              <p className="text-white font-bold text-lg mb-2">
-                レンダリング済み動画を配置
-              </p>
-              <p className="text-slate-500 text-xs">
-                <code>npx remotion render Opening out/opening.mp4</code>
-                <br />
-                でMP4を出力してここに配置
-              </p>
-            </div>
+            <video
+              src="/opening.mp4"
+              controls
+              loop
+              playsInline
+              style={{ width: "100%", display: "block", background: "#020B18" }}
+            />
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-6">
