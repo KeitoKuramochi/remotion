@@ -202,6 +202,125 @@ export default function Page() {
         />
       </div>
 
+      {/* ── SESSION FLOW ── */}
+      <div style={{ maxWidth: 680, margin: "3rem auto 0", padding: "0 1.5rem" }}>
+        <Reveal>
+          <p style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.65rem",
+            color: "var(--text-muted)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            marginBottom: "1.2rem",
+          }}>
+            Session Flow — このセッションで実際にやったこと
+          </p>
+
+          {/* Flow steps */}
+          <div style={{ position: "relative" }}>
+            {/* Vertical connector line */}
+            <div style={{
+              position: "absolute",
+              left: "0.45rem",
+              top: "1.2rem",
+              bottom: "1.2rem",
+              width: 1,
+              background: "linear-gradient(to bottom, var(--accent), var(--border) 80%)",
+              opacity: 0.3,
+            }} />
+
+            {[
+              {
+                label: "Deep Research",
+                time: "開始",
+                desc: "Remotionが何かわからない状態から。まずClaudeにRemotionを徹底調査させてMDファイルにまとめてもらった。",
+                note: null,
+              },
+              {
+                label: "Hello World を試す",
+                time: "動作確認",
+                desc: "「チュートリアル通りに動かす / HelloWorldを試す / 自分で作る」を提示されて HelloWorld を選択。テンプレートがブラウザ上で動く状態を確認。",
+                note: null,
+              },
+              {
+                label: "おちれのオープニング制作",
+                time: "本番",
+                desc: "キャラクター画像（Gemini生成）を渡して「10秒のオープニングを作って」と指示。Motion Graphicsを段階的に追加していった。",
+                note: null,
+              },
+              {
+                label: "音のタイミング調整",
+                time: "ハマりポイント",
+                desc: "ブラウザ（Remotion Studio）上でフレームをスクラブして音の位置を確認できるが、そこで調整しても何も変わらない。タイミングはすべてコードの from={} で指定する必要がある。",
+                note: "⚠ ブラウザは「読み取り専用のプレビュー」。変更はコードから。",
+              },
+              {
+                label: "完成・Vercel公開",
+                time: "完了",
+                desc: "BGM + SE 3種のタイミングをコードで合わせ、Motion Graphicsを追加して13秒の動画が完成。レンダリング → このサイトに埋め込み。",
+                note: null,
+              },
+            ].map((step, i) => (
+              <div key={i} style={{
+                display: "grid",
+                gridTemplateColumns: "1rem 1fr",
+                gap: "0 1.25rem",
+                marginBottom: i < 4 ? "1.75rem" : 0,
+                alignItems: "start",
+              }}>
+                {/* Dot */}
+                <div style={{
+                  width: "0.9rem",
+                  height: "0.9rem",
+                  borderRadius: "50%",
+                  background: step.note ? "rgba(255,100,80,0.6)" : "var(--bg)",
+                  border: `1px solid ${step.note ? "rgba(255,100,80,0.6)" : "var(--accent)"}`,
+                  marginTop: "0.2rem",
+                  flexShrink: 0,
+                  boxShadow: step.note ? "0 0 8px rgba(255,100,80,0.3)" : "0 0 6px rgba(0,212,255,0.2)",
+                }} />
+                {/* Content */}
+                <div>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.6rem", marginBottom: "0.3rem" }}>
+                    <span style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--text-strong)" }}>
+                      {step.label}
+                    </span>
+                    <span style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      color: step.note ? "rgba(255,100,80,0.8)" : "var(--text-muted)",
+                      letterSpacing: "0.06em",
+                    }}>
+                      {step.time}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: "0.85rem", color: "var(--text)", lineHeight: 1.7, marginBottom: step.note ? "0.5rem" : 0 }}>
+                    {step.desc}
+                  </p>
+                  {step.note && (
+                    <p style={{
+                      fontSize: "0.8rem",
+                      color: "rgba(255,140,120,0.85)",
+                      fontFamily: "var(--font-mono)",
+                      letterSpacing: "0.03em",
+                      lineHeight: 1.6,
+                    }}>
+                      {step.note}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{
+            marginTop: "2rem",
+            height: 1,
+            background: "var(--border)",
+          }} />
+        </Reveal>
+      </div>
+
       {/* ── ARTICLE ── */}
       <main style={{ ...article, paddingTop: "4rem", paddingBottom: "6rem" }}>
 
